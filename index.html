@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kaleidoscope - Multimodal Multilingual Benchmark</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="/static/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/static/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/static/android-chrome-512x512.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon-16x16.png">
+    <link rel="manifest" href="/static/site.webmanifest">
+
+    <!-- External CSS Libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="static/CohereVariable.woff2" as="font" type="font/woff2" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/index.css">
+
+    <!-- Chart JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <style>
+        @media (max-width: 767px) {
+            .desktop-only {
+                display: none;
+            }
+
+            #languagesChart {
+                height: 300px !important; /* You may want to adjust chart height on mobile */
+            }
+
+            .chart-tooltip {
+                font-size: 5px; /* Smaller tooltip on mobile */
+            }
+        }
+
+        @font-face {
+            font-family: 'CohereVariable';
+            src: url('static/CohereVariable.woff2') format('woff2-variations');
+            font-weight: 100 900;
+        }
+
+        .font-variable {
+            font-family: CohereVariable, Arial, ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+        }
+
+        .text-4xl {
+            font-size: 2rem;
+            line-height: 115%;
+            letter-spacing: .01em;
+        }
+
+
+        .custom-heading {
+            font-variation-settings: 'cuts' 100, 'move' 100;
+            font-variant-ligatures: common-ligatures;
+            margin-bottom: 1.25rem !important;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="header-pattern"></div>
+    <div class="container">
+        <nav class="navbar">
+            <a href="https://cohere.com/research" class="logo  font-variable !mb-5"
+               style="font-variation-settings:'cuts' 100, 'move' 100;font-variant-ligatures:common-ligatures;font-weight:500">
+                <img src="/static/forAI.png" alt="For AI logo" width="40" height="40">
+                Cohere For AI
+            </a>
+            <div class="nav-links desktop-only">
+                <a href="#about">About</a>
+                <a href="#stats">Statistics</a>
+                <a href="#features">Features</a>
+                <a href="#repositories">Repositories</a>
+                <a href="/datasetview">Explore Data</a>
+            </div>
+        </nav>
+
+        <div class="hero">
+            <h1 class="animate__animated animate__fadeInUp text-4xl font-variable !mb-5"
+                style="font-variation-settings:'cuts' 100, 'move' 100;font-variant-ligatures:common-ligatures;font-weight:500">
+                Kaleidoscope</h1>
+            <p class="animate__animated animate__fadeInUp animate__delay-1">Evaluating Multimodal LLMs Across Language
+                Boundaries</p>
+        </div>
+        {% include "questions/question_view_small.html" %}
+        <div class="text-center mt-4" style="margin-bottom: 0.5rem;">
+            <a href="/datasetview" class="btn btn-primary">
+                Try Dataset Viewer
+                <i class="fa fa-arrow-right ms-2"></i>
+            </a>
+        </div>
+    </div>
+</header>
+
+<section id="repositories" class="section" style="background-color: white;">
+    <div class="container">
+        <div class="repositories">
+            <div class="repo-card">
+<span class="icon">
+<svg aria-hidden="true" viewBox="0 0 24 24" version="1.1" width="100" data-view-component="true">
+<path d="M12.5.75C6.146.75 1 5.896 1 12.25c0 5.089 3.292 9.387 7.863 10.91.575.101.79-.244.79-.546 0-.273-.014-1.178-.014-2.142-2.889.532-3.636-.704-3.866-1.35-.13-.331-.69-1.352-1.18-1.625-.402-.216-.977-.748-.014-.762.906-.014 1.553.834 1.769 1.179 1.035 1.74 2.688 1.25 3.349.948.1-.747.402-1.25.733-1.538-2.559-.287-5.232-1.279-5.232-5.678 0-1.25.445-2.285 1.178-3.09-.115-.288-.517-1.467.115-3.048 0 0 .963-.302 3.163 1.179.92-.259 1.897-.388 2.875-.388.977 0 1.955.13 2.875.388 2.2-1.495 3.162-1.179 3.162-1.179.633 1.581.23 2.76.115 3.048.733.805 1.179 1.825 1.179 3.09 0 4.413-2.688 5.39-5.247 5.678.417.36.776 1.05.776 2.128 0 1.538-.014 2.774-.014 3.162 0 .302.216.662.79.547C20.709 21.637 24 17.324 24 12.25 24 5.896 18.854.75 12.5.75Z"></path>
+</svg>
+</span>
+                <a href="https://github.com/israfelsr/kaleidoscope" class="btn">GitHub Repository</a>
+            </div>
+            <div class="repo-card">
+<span class="icon">
+<img src="static/huggingface_logo-noborder.svg" alt="Hugging Face logo" class="hf-logo">
+</span>
+                <a href="https://huggingface.co/datasets/CohereForAI/kaleidoscope" class="btn">Hugging Face
+                    Repository</a>
+            </div>
+            <div class="repo-card">
+<span class="icon">
+<img src="/static/arxiv.png" alt="arXiv logo" style="height:60px;">
+</span>
+                <a href="https://arxiv.org/abs/2504.07072" class="btn">arXiv Paper</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="about" class="section">
+    <div class="container">
+        <h2 class="section-title">About Kaleidoscope</h2>
+        <div class="about-content">
+            <p>Kaleidoscope is a comprehensive evaluation suite of multimodal multiple-choice question answering (MCQA)
+                derived from diverse examination sources across the globe. With 20,911 questions spanning 18 languages
+                and 14 subjects, our benchmark assesses the reasoning and knowledge capabilities of multimodal LLMs in
+                environments where they are intended to be deployed.</p>
+            <p>Our benchmark emphasizes multimodal evaluation, with 55% of questions requiring image understanding for
+                accurate resolution, making it the largest multilingual and multimodal MCQA benchmark to date. We
+                include region-specific and non-region-specific knowledge to ensure a fair and comprehensive evaluation
+                of AI systems across different cultural contexts.</p>
+        </div>
+    </div>
+</section>
+
+<section id="stats" class="section" style="background-color: white;">
+    <div class="container">
+        <h2 class="section-title">Dataset Statistics</h2>
+        <div class="stats">
+            <div class="stat-card animate__animated animate__fadeInUp">
+                <i class="fas fa-list-ol"></i>
+                <h3>20,911</h3>
+                <p>Total Questions</p>
+            </div>
+            <div class="stat-card animate__animated animate__fadeInUp animate__delay-1">
+                <i class="fas fa-language"></i>
+                <h3>18</h3>
+                <p>Languages</p>
+            </div>
+            <div class="stat-card animate__animated animate__fadeInUp animate__delay-2">
+                <i class="fas fa-book"></i>
+                <h3>14</h3>
+                <p>Subject Areas</p>
+            </div>
+            <div class="stat-card animate__animated animate__fadeInUp animate__delay-3">
+                <i class="fas fa-image"></i>
+                <h3>55%</h3>
+                <p>Multimodal Questions</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="features" class="section">
+    <div class="container">
+        <h2 class="section-title">Key Features</h2>
+        <div class="features">
+            <div class="feature-card">
+                <i class="fas fa-globe"></i>
+                <h3>Multilingual Coverage</h3>
+                <p>Extensive coverage across 18 languages including low-resource languages like Nepali, Lithuanian, and
+                    Telugu, ensuring a comprehensive evaluation across linguistic boundaries.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-image"></i>
+                <h3>Multimodal Evaluation</h3>
+                <p>55% of questions require image understanding for accurate resolution, with images categorized as
+                    graphs, tables, diagrams, scientific formulas, and more.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-graduation-cap"></i>
+                <h3>Diverse Knowledge Domains</h3>
+                <p>Questions span 14 subjects including science, humanities, mathematics, and professional fields,
+                    covering various educational levels from high school to professional licensing exams.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-user-check"></i>
+                <h3>Human-Crafted Questions</h3>
+                <p>All questions are derived from real examinations created by domain experts, ensuring high quality and
+                    reflecting authentic assessment scenarios.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-tasks"></i>
+                <h3>Structured Format</h3>
+                <p>Questions follow a standardized multiple-choice format with detailed metadata including subject,
+                    level, and image information type to enable fine-grained analysis.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-landmark"></i>
+                <h3>Cultural Relevance</h3>
+                <p>Includes both region-specific and region-agnostic knowledge, ensuring evaluation that respects
+                    cultural and geographical diversity.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- New image section with hover text -->
+<section id="featured-visual" class="section" style="background-color: white;">
+    <div class="container" style="max-width: 1200px; margin: 0 auto;">
+        <h2 class="section-title">Data Processing Pipeline</h2>
+        <div style="margin: 2rem auto; text-align: center;">
+            <div style="position: relative; display: inline-block; max-width: 95%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); overflow: hidden;">
+                <!-- Image with hover effect -->
+                <img id="featured-img" src="/static/process_detail.png" alt="Kaleidoscope Visual"
+                     style="display: block; max-width: 100%; max-height: 600px; object-fit: contain; transition: filter 0.3s ease;">
+
+                <!-- Hover overlay with the three-part description -->
+                <div id="hover-overlay"
+                     style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; transition: opacity 0.3s ease; background-color: rgba(0, 0, 0, 0.7); padding: 10px; overflow-y: auto;"
+                     onmouseover="this.style.opacity='1'; document.getElementById('featured-img').style.filter='blur(3px) brightness(0.7)';"
+                     onmouseout="this.style.opacity='0'; document.getElementById('featured-img').style.filter='none';">
+
+                    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; height: 100%; color: white;">
+                        <!-- Left section - now with text-align: left -->
+                        <div style="flex: 1; min-width: 200px; padding: 15px; margin: 5px; background-color: rgba(79, 70, 229, 0.2); border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); text-align: left;">
+                            <h3 style="color: white; font-size: 1.2rem; margin-bottom: 10px;">1. Data Collection</h3>
+                            <p style="font-size: 0.9rem; line-height: 1.5; color: rgba(255,255,255,0.9);">
+                                Kaleidoscope data call was distributed within the global C4AI community and resulted in
+                                20,911 exam questions collected from 18 countries and 18 languages across the world. The
+                                exams were gathered from official government websites, question banks, and other public
+                                repositories.
+                            </p>
+                        </div>
+
+                        <!-- Middle section - now with text-align: left -->
+                        <div style="flex: 1; min-width: 200px; padding: 15px; margin: 5px; background-color: rgba(79, 70, 229, 0.2); border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); text-align: left;">
+                            <h3 style="color: white; font-size: 1.2rem; margin-bottom: 10px;">2. Annotation</h3>
+                            <p style="font-size: 0.9rem; line-height: 1.5; color: rgba(255,255,255,0.9);">
+                                During the annotation process we extract text and image elements from exam PDFs and
+                                restructure them, ensuring proper alignment of questions, text, and answer choices. The
+                                resulting json is verified to make sure that all images, questions and formulas are
+                                properly aligned.
+                            </p>
+                        </div>
+
+                        <!-- Right section - now with text-align: left -->
+                        <div style="flex: 1; min-width: 200px; padding: 15px; margin: 5px; background-color: rgba(79, 70, 229, 0.2); border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); text-align: left;">
+                            <h3 style="color: white; font-size: 1.2rem; margin-bottom: 10px;">3. Quality Assessment</h3>
+                            <p style="font-size: 0.9rem; line-height: 1.5; color: rgba(255,255,255,0.9);">
+                                Several stages of validation ensure integrity of collected data, including manual
+                                verifications by two independent annotators and validation script checks for JSON
+                                formatting errors, duplicate questions, and malformed string.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section id="language-statistics" class="section">
+    <div class="container statistics-section">
+        <h2 class="section-title">Language Statistics</h2>
+        <div class="chart-container">
+            <canvas id="languagesChart" height="400"></canvas>
+            <div id="chartTooltip" class="chart-tooltip"></div>
+        </div>
+    </div>
+</section>
+
+
+<footer>
+    <div class="container">
+        <h3>Kaleidoscope</h3>
+        <p>Evaluating Multimodal LLMs Across Language Boundaries</p>
+
+        <div class="footer-links">
+            <a href="#about" class="desktop-only">About</a>
+            <a href="#stats" class="desktop-only">Statistics</a>
+            <a href="#features" class="desktop-only">Features</a>
+            <a href="#repositories">Repositories</a>
+            <a href="/datasetview">Explore Data</a>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chart.js/3.9.1/chart.min.js"></script>
+<script id="language-data" type="application/json">
+    {{
+        language_counts_json
+        |
+        safe
+    }}
+</script>
+
+<script>
+    const languageCounts = JSON.parse(document.getElementById("language-data").textContent);
+
+    const languageData = {
+        labels: [{ % for code, name in all_languages %
+    }
+    "{{ name }}"
+    {%
+        if not forloop.last %
+    }
+    ,
+    {%
+        endif %
+    }
+    {%
+        endfor %
+    }
+    ],
+    datasets: [{
+        label: 'Number of Questions',
+        data: [{ % for code, name in all_languages %
+    }
+        languageCounts["{{ code }}"] || 0{ %
+    if not forloop.last %
+    },
+    {%
+        endif %
+    }
+    {%
+        endfor %
+    }
+    ],
+    backgroundColor: '#6366f1',
+        borderWidth
+    :
+    0
+    }]
+    }
+    ;
+
+    // Set up the chart when the page is loaded
+    document.addEventListener('DOMContentLoaded', function () {
+        const ctx = document.getElementById('languagesChart')?.getContext('2d');
+        const tooltip = document.getElementById('chartTooltip');
+
+        if (ctx && tooltip) {
+            const languagesChart = new Chart(ctx, {
+                type: 'bar',
+                data: languageData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            enabled: false,
+                            external: function (context) {
+// Tooltip Element
+                                let tooltipEl = tooltip;
+
+// Hide if no tooltip
+                                const tooltipModel = context.tooltip;
+                                if (tooltipModel.opacity === 0) {
+                                    tooltipEl.style.opacity = 0;
+                                    return;
+                                }
+
+// Set Text
+                                if (tooltipModel.body) {
+                                    const titleLines = tooltipModel.title || [];
+                                    const bodyLines = tooltipModel.body.map(b => b.lines);
+
+                                    let innerHtml = '<div>';
+
+                                    titleLines.forEach(function (title) {
+                                        innerHtml += '<h4>' + title + '</h4>';
+                                    });
+
+                                    innerHtml += '<p>' + bodyLines.join('') + '</p>';
+                                    innerHtml += '</div>';
+
+                                    tooltipEl.innerHTML = innerHtml;
+                                }
+
+// `this` will be the overall tooltip
+                                const position = context.chart.canvas.getBoundingClientRect();
+
+// Display, position, and set styles for font
+                                tooltipEl.style.opacity = 1;
+                                tooltipEl.style.left = position.left + window.pageXOffset + tooltipModel.caretX + 'px';
+                                tooltipEl.style.top = position.top + window.pageYOffset + tooltipModel.caretY + 'px';
+                                tooltipEl.style.padding = tooltipModel.padding + 'px ' + tooltipModel.padding + 'px';
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Number of Questions'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+    });
+</script>
+</body>
+</html>
